@@ -1,3 +1,4 @@
+//API: recuperer les projet sur route/works en get
 //apel Api pour les travaux avec méthode GET
 
 fetch("http://localhost:5678/api");
