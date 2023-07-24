@@ -1,11 +1,37 @@
 //API: recuperer les projet sur route/works en get
 //apel Api pour les travaux avec méthode GET
 
-fetch("http://localhost:5678/api");
+let url = `http://localhost:5678/api/works`; // on recupere l'api work
+let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
 
-fetch(`http://localhost:8081/pieces/${id}/travaux`);
+const apiCall = async() => {
+    await fetch(url) // pour faire attendre pendant le traitement
+    .then((response) => response.json ()) // réponse requête transformer au format Json
+    .then((data) => (apiData = data)) // cherche les donnés de l'api
 
-//ajouter galerie de travaux récuperés avec creat Element
-const article = travaux[0];
-const imageElement = document.createElement("img");
-travauxElement.src = article.travaux;
+    function showWork(apiData){
+
+        apiData.forEach(element => { //boucle crée 1 part élement
+
+            newFigure = document.createElement('figure');
+            newFigure.id = element.id;
+
+            newImg = document.createElement('img');
+            newImg.src = element.imageUrl;
+            newImg.alt = element.title;
+
+            newFigcaption = document.createElement ('figcaption');
+            newFigcaption.innerText = element.title;
+
+            section.appendChild(newFigure);
+            newFigure.appendChild(newImg);
+            newFigure.appendChild(newFigcaption);
+
+        });
+    }
+
+    showWork (apiData);
+
+}
+
+apiCall();
