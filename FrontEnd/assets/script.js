@@ -57,7 +57,6 @@ let apiCallCategories = async() => {
             filters.appendChild(newFilter);
             console.log(newFilter)
           
-
         });
     }
 
@@ -87,3 +86,24 @@ button[2].addEventListener("click",() => {
     console.log("hotels restaurants");
     showBuldings();
 })
+
+
+
+//let objects = document.getElementById('1')
+//console.log(objects)
+//let flats = document.getElementById('2')
+//console.log(flats)
+//let buldings = document.getElementById('3')
+//console.log(buldings)
+
+function showObjects(){
+    button.id = 1;
+}
+
+function showFlat(){
+    button.id = 2
+}
+
+function showBulding(){
+    button.id = 3
+}
