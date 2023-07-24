@@ -66,3 +66,24 @@ let apiCallCategories = async() => {
 }
 
 apiCallCategories();
+
+
+
+// ajout eventListener sur les btn filters
+
+let button = document.querySelector('button')
+
+button[0].addEventListener("click",() => {
+    console.log("objects");
+    showObjects();     
+})
+
+button[1].addEventListener("click",() => {
+    console.log("appartements");
+    showFlats();
+})
+
+button[2].addEventListener("click",() => {
+    console.log("hotels restaurants");
+    showBuldings();
+})
