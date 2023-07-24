@@ -32,6 +32,21 @@ const apiCall = async() => {
 
     showWork (apiData);
 
+    function filterWork(apiData){
+
+        apiData.forEach(category => { 
+
+            newButton = document.createElement('button');
+            newButton.innerText = category.name;
+           
+            filters.appendChild(newButton);
+
+        });
+    }
+
+    filterWork (apiData);
+
+
 }
 
 apiCall();
