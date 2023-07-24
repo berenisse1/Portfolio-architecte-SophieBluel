@@ -3,6 +3,7 @@
 
 let url = `http://localhost:5678/api/works`; // on recupere l'api work
 let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
+let filters = document.querySelector('.filters'); //on va chercher la class filters pour aficher les btns
 
 const apiCall = async() => {
     await fetch(url) // pour faire attendre pendant le traitement
