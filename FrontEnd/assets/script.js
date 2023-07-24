@@ -3,7 +3,6 @@
 
 let url = `http://localhost:5678/api/works`; // on recupere l'api work
 let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
-let filters = document.querySelector('.filters'); //on va chercher la class filters pour aficher les btns
 
 const apiCall = async() => {
     await fetch(url) // pour faire attendre pendant le traitement
@@ -33,21 +32,37 @@ const apiCall = async() => {
 
     showWork (apiData);
 
+}
+
+apiCall();
+
+
+let urlCategories = `http://localhost:5678/api/categories`; 
+let filters = document.querySelector('.filters');
+console.log(filters)
+
+let apiCallCategories = async() => {
+    await fetch(urlCategories) // pour faire attendre pendant le traitement
+    .then((response) => response.json ()) // réponse requête transformer au format Json
+    .then((data) => (apiData = data)) // cherche les donnés de l'api
+
     function filterWork(apiData){
 
         apiData.forEach(category => { 
 
-            newButton = document.createElement('button');
-            newButton.innerText = category.name;
-           
-            filters.appendChild(newButton);
+            newFilter = document.createElement('button');
+            newFilter.id = category.id;
+            newFilter.innerText = category.name;
+
+            filters.appendChild(newFilter);
+            console.log(newFilter)
+          
 
         });
     }
 
     filterWork (apiData);
-
-
+    console.log(filterWork);
 }
 
-apiCall();
+apiCallCategories();
