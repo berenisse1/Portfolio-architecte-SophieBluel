@@ -70,21 +70,31 @@ apiCallCategories();
 
 // ajout eventListener sur les btn filters
 
-let button = document.querySelector('button')
+let buttonFilter = document.querySelector('button')
 
-button[0].addEventListener("click",() => {
+buttonFilter[0].addEventListener("click",() => {
     console.log("objects");
-    showObjects();     
+    const button = button.filter(function(button) {
+        return button.id = 1
+    });
+        
 })
 
-button[1].addEventListener("click",() => {
+buttonFilter[1].addEventListener("click",() => {
     console.log("appartements");
-    showFlats();
+    const button = button.filter(function(button) {
+        return button.id = 2
+    });
+
 })
 
-button[2].addEventListener("click",() => {
+buttonFilter[2].addEventListener("click",() => {
     console.log("hotels restaurants");
-    showBuldings();
+    const button = button.filter(function(button) {
+        return button.id = 3
+    });
+
+
 })
 
 
