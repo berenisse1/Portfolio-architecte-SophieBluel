@@ -1,5 +1,5 @@
 let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
-const btnFiltre = document.querySelector('btnFiltre[data-id]')
+const btnFiltre = document.querySelector('button[data-id]')
 
 
 const apiCall = async() => {
@@ -15,7 +15,8 @@ const apiCall = async() => {
             button.addEventListener('click')  //event au click
             const dataId = button.dataset.id  // variable pr chercher data_id des btn
             let filtre = apiData.filter(function(element) { // variable pr filtrer les données api
-                return element.categoryId = dataId = document.querySelector('.gallery').innerHtml = ''; // vide la gallery pr afficher uniquement categorie filtrée
+                return element.categoryId === dataId
+                document.querySelector('.gallery').innerHTML = ''; // vide la gallery pr afficher uniquement categorie filtrée
                
             })
         
