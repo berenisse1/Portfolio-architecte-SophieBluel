@@ -1,50 +1,10 @@
 
 
-let urlCategories = `http://localhost:5678/api/categories`;
-let filters = document.querySelector('.filters');
-console.log(filters)
-
-
-
-const apiCallCategories= async() => {
-    await fetch(urlCategories) // pour faire attendre pendant le traitement
-    .then((response) => response.json ()) // réponse requête transformer au format Json
-    .then((data) => (apiData = data)) // cherche les donnés de l'api
-
-
-    function showCategories(apiData){
-
-
-        apiData.forEach(category => { //boucle crée 1 part élement
-    
-    
-            btnFiltre = document.createElement('button');
-            btnFiltre.id = category.id;
-            btnFiltre.innerText = category.name;
-    
-            filters.appendChild(btnFiltre);
-            console.log(btnFiltre)
-        
-    
-        });
-    
-       
-       
-    }
-    
-    showCategories(apiData);
-    
-
-}
-apiCallCategories();
-
-
-
-
 let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
 
 
 const apiCallFiltre = async () => {
+
     await fetch(urlWorks)
     .then((response) => response.json ()) // réponse requête transformer au format Json
     .then((data) => (apiData = data)) // cherche les donnés de l'api
