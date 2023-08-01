@@ -1,6 +1,6 @@
-let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
+//let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
 let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
-const btnFiltre = document.querySelector('btnFiltre[data-id]')
+
 
 
 const apiCall = async() => {
@@ -35,7 +35,6 @@ const apiCall = async() => {
     }
 
     showWork (apiData);
-
 
     
 
