@@ -1,44 +1,41 @@
+// Afficher les boutons filtres
 
+let urlWorks = `http://localhost:5678/api/categories`; // on recupere l'api work
+let filters = document.querySelector('.filter');
 
-let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
+const apiCallCtegories = async () => {
 
-
-const apiCallFiltre = async () => {
-
-    await fetch(urlWorks)
+    await fetch(urlCategories)
     .then((response) => response.json ()) // réponse requête transformer au format Json
     .then((data) => (apiData = data)) // cherche les donnés de l'api
 
 
+    //Bouton qui affiche tous les projets
+
+    filterAll = document.createElement('button');
+    filterAll .classList.add('all-filter');
+    filterAll.innerText = 'Tous';
+
+    filterAll.appendChild(filterAll);
+
+
+    //Boucle qui permet d'afficher tous les boutons de filtres selon ID
+
     function filtreWork(apiData){
-        const btnFiltre = document.querySelector('button[data-id]')
-        btnFiltre.forEach(button => { // boucle crée 1 par boutton
+        apiData.forEach(category => {
 
+            newFilter.innerText = category.name;
+            newFilter.classList.add('btn-filter');
+            newFilter.setAttribute('data-id', category.id);
 
-            button.addEventListener('click')  //event au click
-            const dataId = button.dataset.id  // variable pr chercher data_id des btn
-            apiData.filter(function(element) { // variable pr filtrer les données api
-                return element.categoryId === dataId
-               
-            });
-   
-           
-            document.querySelector('.gallery').innerHTML = ''; // vide la gallery pr afficher uniquement categorie filtrée
-   
-       
+            filters.appendChild(newFilter);
+            
         });
 
 
-
-
     }
-
-
     filtreWork(apiData);
-
-
-
-
+ 
 }
 apiCallFiltre();
 
