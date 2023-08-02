@@ -1,4 +1,4 @@
-//let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
+let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
 let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
 
 
@@ -26,20 +26,41 @@ const apiCall = async() => {
             newFigure.appendChild(newImg);
             newFigure.appendChild(newFigcaption);
 
-
         });
-
-       
-    
             
     }
-
     showWork (apiData);
 
+
+    //Traitement des filtres
+
+    const btnFiltre = document.querySelectorAll('.btn-filter[data-id]')// Cherche les boutons de filtrages
     
+    btnFiltre.forEach(button => { // boucle crée 1 par boutton
+
+        button.addEventListener('click', () => {  // crée un évenement au clic
+        const dataId = button.dataset.id 
+        let filtre = apiData.filter(function(element){
+            return element.categoryId == dataId;
+        });
+        document.querySelector('.gallery').innerHTML = '';
+        showWork(filtre);
+        })     
+   
+    });
+
+    // Traitement du bouton Tous
+
+    const btnAll = document.querySelector('.all-filter');
+
+    btnAll.addEventListener('click', () => {
+        document.querySelector('.gallery').innerHTML = '';
+        return showWork(apiData);
+    })
+
+  
 
 }
-
 apiCall();
 
 

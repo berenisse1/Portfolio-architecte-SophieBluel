@@ -1,9 +1,9 @@
 // Afficher les boutons filtres
 
-let urlWorks = `http://localhost:5678/api/categories`; // on recupere l'api work
-let filters = document.querySelector('.filter');
+let urlCategories = `http://localhost:5678/api/categories`; // on recupere l'api work
+let filters = document.querySelector('.filters');
 
-const apiCallCtegories = async () => {
+let apiCallCategories = async () => {
 
     await fetch(urlCategories)
     .then((response) => response.json ()) // réponse requête transformer au format Json
@@ -13,16 +13,18 @@ const apiCallCtegories = async () => {
     //Bouton qui affiche tous les projets
 
     filterAll = document.createElement('button');
-    filterAll .classList.add('all-filter');
+    filterAll.classList.add('all-filter');
     filterAll.innerText = 'Tous';
 
-    filterAll.appendChild(filterAll);
+    filters.appendChild(filterAll);
 
 
     //Boucle qui permet d'afficher tous les boutons de filtres selon ID
 
-    function filtreWork(apiData){
+    function filterWork(apiData){
         apiData.forEach(category => {
+
+            newFilter = document.createElement('button');
 
             newFilter.innerText = category.name;
             newFilter.classList.add('btn-filter');
@@ -34,10 +36,10 @@ const apiCallCtegories = async () => {
 
 
     }
-    filtreWork(apiData);
+    filterWork(apiData);
  
 }
-apiCallFiltre();
+apiCallCategories();
 
 
 
