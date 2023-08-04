@@ -9,16 +9,42 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/login.css">
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
+    <header>       
+        <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+        <nav>
+            <ul>
+                <li>projets</li>
+                <li>contact</li>
+                <li>login</li>
+                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+            </ul>
+        </nav>
+    </header>
+    <main> 
+        <h2>Log in</h2>
+        <form action="">
+            <div>
+                <label for="name">Nom:</label>
+                <input type="text" id="name" name="user_name" />
+            </div>
+            <div>
+                <label for="mail">E-mail:</label>
+                <input type="email" id="mail" name="user_mail" />
+            </div>
+            <div>
+                <input type="submit" value="Se connecter" /> 
+            </div> 
+        </form>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li>Mentions Légales</li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
