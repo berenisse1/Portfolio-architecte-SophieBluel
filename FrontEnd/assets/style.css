@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background: #FFFEF8;
 }
 header {
 	display: flex;
@@ -141,7 +142,7 @@ button{
 	font-size: 16px;
 	height: 38px;
 	margin: 10px;
-	padding: 10px;
+	padding: 5px 10px;
 	min-width:100px;
 	text-align: center;
 	border-radius: 60px ;
@@ -208,10 +209,15 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
+footer{
+	background: #FFF;
+	height: 60px;
+	margin: 0px§!important;
+	
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 

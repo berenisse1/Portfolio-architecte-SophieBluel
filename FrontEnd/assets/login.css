@@ -1,0 +1,38 @@
+
+h2{
+    width: 100px;
+    margin: auto;
+    margin-top: 150px;
+    margin-bottom: 60px;
+}
+form , input{
+    width: 379px;
+    margin: auto;
+}
+input{ 
+    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    border: none;
+    height: 51px;
+}
+#mail{
+    margin-bottom: 52px;  
+}
+#password{
+    margin-bottom: 37px;
+}
+.connect{
+    display: flex;
+    justify-content: center;
+}
+form button{
+   height: 40px;
+   width: 200px; 
+   margin-bottom: 28px;
+   background-color:#1D6154;
+   color: #FFF;  
+}
+form a{
+    display: flex;
+    justify-content: center;
+}
+
