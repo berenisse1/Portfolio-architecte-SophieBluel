@@ -56,7 +56,7 @@ const apiCall = async() => {
     btnAll.addEventListener('click', () => {
         document.querySelector('.gallery').innerHTML = '';
         return showWork(apiData);
-    })
+    });
 
   
 

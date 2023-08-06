@@ -2,11 +2,11 @@
 
 // On récupère les deux champs et on affiche leur valeur
 
-let form = document.querySelector("form")
-console.log(form)
-let baliseEmail = document.querySelector("email")
+let form = document.querySelector("form");
+console.log(form);
+let baliseEmail = document.querySelector("email");
 console.log(email);
-let balisePassword = document.querySelector("password")
+let balisePassword = document.querySelector("password");
 console.log(password);
 
 
@@ -31,7 +31,7 @@ function verifierEmail(balise) {
 }
 
 function verifierPassword(balise) {
-    let passwordRegExp = new RagExp("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/")
+    let passwordRegExp = new RagExp("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/")
     if(passwordRegExp.test(balise.value)) {
         balise.classList.remove("error")
     } else {
