@@ -29,12 +29,12 @@ const apiCall = async() => {
         });
             
     }
-    showWork (apiData);
+    showWork(apiData);
 
 
     //Traitement des filtres
 
-    const btnFiltre = document.querySelectorAll('.btn-filter[data-id]')// Cherche les boutons de filtrages
+    const btnFiltre = document.querySelectorAll('.btn-filter[data-id]');// Cherche les boutons de filtrages
     
     btnFiltre.forEach(button => { // boucle crée 1 par boutton
 
@@ -51,7 +51,7 @@ const apiCall = async() => {
 
     // Traitement du bouton Tous
 
-    const btnAll = document.querySelector('.all-filter');
+    const btnAll = document.getElementsByClassName('all-filter');
 
     btnAll.addEventListener('click', () => {
         document.querySelector('.gallery').innerHTML = '';
