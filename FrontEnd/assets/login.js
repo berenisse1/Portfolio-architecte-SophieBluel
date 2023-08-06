@@ -39,4 +39,19 @@ function verifierPassword(balise) {
     }
 }
 
+//Controle si régle de validation verifier 
 
+form.addEventListener("submit", (event) => { // On verifie les input a l'envoi du formilaire
+    event.preventDefault() // On empêche le comportement par défaut
+    verifierChamp(balisePassword)
+})
+
+baliseEmail.addEventListener("change", () => { //On verifie l'email au changement de champ
+    verifierChamp(baliseEmail)
+
+})
+
+baliseEmail.addEventListener("change", () => { //On verifie le password au changement de champ
+    verifierChamp(balisePassword)
+
+})
