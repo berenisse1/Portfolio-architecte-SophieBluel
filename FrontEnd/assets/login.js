@@ -21,7 +21,6 @@ function verifierChamp(balise){
     }
 }
 
-
 function verifierEmail(balise) {
     let emailRegExp = new RagExp("[a-z0-9._-]+[a-z0-9._-]+\\.[a-z0-9._-]")
     if(emailRegExp.test(balise.value)) {
@@ -30,3 +29,14 @@ function verifierEmail(balise) {
         balise.classList.add("error")
     }
 }
+
+function verifierPassword(balise) {
+    let passwordRegExp = new RagExp("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/")
+    if(passwordRegExp.test(balise.value)) {
+        balise.classList.remove("error")
+    } else {
+        balise.classList.add("error")
+    }
+}
+
+
