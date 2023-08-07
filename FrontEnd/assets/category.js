@@ -17,6 +17,7 @@ let apiCallCategories = async () => {
     filterAll.innerText = 'Tous';
 
     filters.appendChild(filterAll);
+    console.log(filterAll);
 
 
     //Boucle qui permet d'afficher tous les boutons de filtres selon ID
@@ -31,6 +32,7 @@ let apiCallCategories = async () => {
             newFilter.setAttribute('data-id', category.id);
 
             filters.appendChild(newFilter);
+            console.log(newFilter);
             
         });
 
