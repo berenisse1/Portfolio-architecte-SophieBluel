@@ -35,6 +35,7 @@ const apiCall = async() => {
     //Traitement des filtres
 
     const btnFiltre = document.querySelectorAll('.btn-filter[data-id]');// Cherche les boutons de filtrages
+    console.log(btnFiltre);
     
     btnFiltre.forEach(button => { // boucle crée 1 par boutton
 
@@ -47,11 +48,12 @@ const apiCall = async() => {
         showWork(filtre);
         })     
    
-    });
+    })
 
     // Traitement du bouton Tous
 
-    const btnAll = document.getElementsByClassName('all-filter');
+    const btnAll = document.querySelector('.all-filter');
+    console.log(btnAll);
 
     btnAll.addEventListener('click', () => {
         document.querySelector('.gallery').innerHTML = '';
