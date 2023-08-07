@@ -72,37 +72,23 @@ let user = {
     password: "balisePassword.value"
 };
   
+let apiCallUsersLogin = async () => { 
 
-let apiCallUsersLogin = async () =>{
-
-    let response = await fetch(urlUsersLogin, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(user)
+    let response = await fetch(urlUsersLogin,{ 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'// en tête
+    },
+    body: JSON.stringify(user)  // charge utile
     });
       
     let result = await response.json();
     console.log(result.message);
 
-
-
+   
 }
 apiCallUsersLogin();
 
 
 
-function stockToken(){ 
-    if(result === "200") {
-        window.localStorage.setItem("token"); // Stockage token dans le localStorage
-        window.href = "./index.html";
-    }if(result === "404") {
-        messageError.innerTexte = "utilisateur inconnus"   
-    }
-    else{
-        messageError.innerTexte = "accée non autorisé"
-    }
-     
-}
 
