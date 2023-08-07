@@ -8,15 +8,17 @@ let baliseEmail = document.querySelector("#email");
 console.log(email);
 let balisePassword = document.querySelector("#password");
 console.log(password);
+let messageError = document.querySelector("p");
 
 
 
-//Définition des régles de validation
+//Définition des règles de validation
 
 // verifie si les champs de saisi sont vides
 function verifierChamp(balise){
     if (balise.value === ""){
         balise.classList.add("error")
+        messageError.innerText = "Veuillez renseigner tous les champs de saisie!" // affiche message d'erreur dans la balise p
     } else {
         balise.classList.remove("error")
     }
@@ -42,7 +44,7 @@ function verifierPassword(balise) {
     }
 }
 
-//Contrôle si les régles de validation sont verifiées lors de l'évenement
+//Contrôle si les règles de validation sont verifiées lors de l'évenement
 
 form.addEventListener("submit", (event) => { // On verifie les input a l'envoi du formilaire
     event.preventDefault() // On empêche le comportement par défaut
@@ -60,3 +62,47 @@ balisePassword.addEventListener("change", () => { //On verifie le password au ch
     verifierPassword(balisePassword)
 
 })
+
+
+// Soumettre les données avec la méthode POST
+
+let urlUsersLogin = `http://localhost:5678/api/users/login`
+let user = {
+    email: "baliseEmail.value",
+    password: "balisePassword.value"
+};
+  
+
+let apiCallUsersLogin = async () =>{
+
+    let response = await fetch(urlUsersLogin, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
+      
+    let result = await response.json();
+    console.log(result.message);
+
+
+
+}
+apiCallUsersLogin();
+
+
+
+function stockToken(){ 
+    if(result === "200") {
+        window.localStorage.setItem("token"); // Stockage token dans le localStorage
+        window.href = "./index.html";
+    }if(result === "404") {
+        messageError.innerTexte = "utilisateur inconnus"   
+    }
+    else{
+        messageError.innerTexte = "accée non autorisé"
+    }
+     
+}
+
