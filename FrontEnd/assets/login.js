@@ -90,5 +90,17 @@ let apiCallUsersLogin = async () => {
 apiCallUsersLogin();
 
 
+// fonction de stockage du token
+function stockToken(){ 
+    if(result === "200") {
+        window.localStorage.setItem("token"); // Stockage token dans le localStorage
+    }if(result === "404") {
+        messageError.innerTexte = "utilisateur inconnus" 
+    }
+    else{
+        messageError.innerTexte = "accée non autorisé"
+    }
+     
+}
 
 
