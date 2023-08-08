@@ -83,7 +83,7 @@ let apiCallUsersLogin = async () => {
     });
       
     let result = await response.json();
-    console.log(result.message);
+    console.log(result);
 
    
 }
@@ -95,10 +95,10 @@ function stockToken(){
     if(result === "200") {
         window.localStorage.setItem("token"); // Stockage token dans le localStorage
     }if(result === "404") {
-        messageError.innerTexte = "utilisateur inconnus" 
+        messageError.innerTexte = "utilisateur inconnu" 
     }
     else{
-        messageError.innerTexte = "accée non autorisé"
+        messageError.innerTexte = "accés non autorisé"
     }
      
 }
