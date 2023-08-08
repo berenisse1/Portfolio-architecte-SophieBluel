@@ -79,7 +79,7 @@ let apiCallUsersLogin = async () => {
     headers: {
       'Content-Type': 'application/json;charset=utf-8'// en tête
     },
-    body: JSON.stringify(user)  // charge utile
+    body: JSON.stringify(user)  // charge utile transforme user en json
     });
       
     let result = await response.json();
@@ -93,7 +93,7 @@ apiCallUsersLogin();
 // fonction de stockage du token
 function stockToken(){ 
     if(result === "200") {
-        window.localStorage.setItem("token"); // Stockage token dans le localStorage
+        window.localStorage.setItem("token, token"); // Stockage token dans le localStorage
     }if(result === "404") {
         messageError.innerTexte = "utilisateur inconnu" 
     }
