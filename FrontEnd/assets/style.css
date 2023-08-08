@@ -89,11 +89,15 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+}
+
+nav li a{
+	text-decoration: none;
+	color: black;
 }
 
 li:hover {
@@ -212,7 +216,7 @@ input[type="submit"]{
 footer{
 	background: #FFF;
 	height: 60px;
-	margin: 0px§!important;
+	
 	
 }
 footer nav ul {
