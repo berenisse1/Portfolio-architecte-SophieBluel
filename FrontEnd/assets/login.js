@@ -66,41 +66,29 @@ balisePassword.addEventListener("change", () => { //On verifie le password au ch
 
 // Soumettre les données avec la méthode POST
 
-let urlUsersLogin = `http://localhost:5678/api/users/login`
-let user = {
-    email: "baliseEmail.value",
-    password: "balisePassword.value"
-};
-  
-let apiCallUsersLogin = async () => { 
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let urlUsersLogin = `http://localhost:5678/api/users/login`;
+    let email = document.getElementById("email").value; //on recupere la valeur de l'email
+    let password = document.getElementById("password").value; // on récuoère la valeur du mot de pass
 
-    let response = await fetch(urlUsersLogin,{ 
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'// en tête
-    },
-    body: JSON.stringify(user)  // charge utile transforme user en json
-    });
-      
-    let result = await response.json();
-    console.log(result);
-
-   
-}
-apiCallUsersLogin();
-
-
-// fonction de stockage du token
-function stockToken(){ 
-    if(result === "200") {
-        window.localStorage.setItem("token, token"); // Stockage token dans le localStorage
-    }if(result === "404") {
-        messageError.innerTexte = "utilisateur inconnu" 
+    if(!email || !password){
+        messageError.innerText = "votre email ou votre mot de passe est incorectes";
     }
-    else{
-        messageError.innerTexte = "accés non autorisé"
-    }
-     
-}
 
+    let raw = JSON.stringify({
+        "email": email,
+        "password" : password
+    })
+    fetch(urlUsersLogin, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8" // en tête
+        },
+        body: raw //charge utile transforme user en json
+
+    })
+    
+
+});
 
