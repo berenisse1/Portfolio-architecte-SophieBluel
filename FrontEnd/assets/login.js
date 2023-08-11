@@ -88,7 +88,18 @@ form.addEventListener("submit", (e) => {
         body: raw //charge utile transforme user en json
 
     })
-    
+    .then(function(response){
+
+        if(!response.ok){
+            messageError.innerText = "Votre email ou votre mot de passe est incorrect"
+        } else {
+            response.json().then(function(data){
+                localStorage.setItem("token", data.token);
+                window.location = "index.html";
+            })
+        }
+    })
+  
 
 });
 
