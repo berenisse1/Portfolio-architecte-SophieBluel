@@ -99,7 +99,9 @@ form.addEventListener("submit", (e) => {
             })
         }
     })
-  
-
+    .catch(error =>
+        connsole.log("error" + error)
+    );
+    
 });
 
