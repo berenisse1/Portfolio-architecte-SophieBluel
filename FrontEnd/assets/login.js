@@ -26,7 +26,7 @@ function verifierChamp(balise){
 
 // verifie si email corespond au format definit par reg exp 
 function verifierEmail(balise) {
-    let emailRegExp = new RegExp("[a-z0-9._-]+[a-z0-9._-]+\\.[a-z0-9._-]")
+    let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]")
     if(emailRegExp.test(balise.value)) {
         balise.classList.remove("error")
     } else {
