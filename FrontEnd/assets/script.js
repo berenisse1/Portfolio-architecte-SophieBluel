@@ -40,9 +40,9 @@ const apiCall = async() => {
     btnFiltre.forEach(button => { // boucle crée 1 par boutton
 
         button.addEventListener('click', () => {  // crée un évenement au clic
-        const dataId = button.dataset.id 
-        let filtre = apiData.filter(function(element){
-            return element.categoryId == dataId;
+        const dataId = button.dataset.id //Crée une constante pour chercher le data-id du bouton
+        let filtre = apiData.filter(function(element){ //Crée variable pour filtrer les données API 
+            return element.categoryId == dataId; // Retourne id de la catégorie en fonction de id du button
         });
         document.querySelector('.gallery').innerHTML = '';
         showWork(filtre);
@@ -60,9 +60,13 @@ const apiCall = async() => {
         return showWork(apiData);
     });
 
-  
 
+  
 }
 apiCall();
+
+
+
+
 
 
