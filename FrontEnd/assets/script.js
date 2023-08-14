@@ -66,7 +66,16 @@ const apiCall = async() => {
 apiCall();
 
 
+//ouverture de la fenetre modal
+let modal = null
 
+const openModal = function (event){
+    event.preventDefault()
+    const target = document.querySelector(element.target.gatAttribute("href"))
+    target.style.display = null
+    target.removeAttribute("aria-hidden")
+    target.setAttribute("aria-modal", "true")
+    modal = targetmodal.addEventListener("click",closeModal)
 
-
+}
 
