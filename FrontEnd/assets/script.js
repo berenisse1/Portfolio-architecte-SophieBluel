@@ -76,6 +76,17 @@ const openModal = function (event){
     target.removeAttribute("aria-hidden")
     target.setAttribute("aria-modal", "true")
     modal = targetmodal.addEventListener("click",closeModal)
-
 }
+
+//fermeture de la fenêtre modal 
+const closeModal = function (event){
+    event.preventDefault()
+    modal.style.display = "none"
+
+    modal.setAttribute("aria-hiden", "true")
+    modal.removeAttribute("aria-modal")
+    modal.removeEventListener("clisck", closeModal)
+    modal = null
+}
+
 
