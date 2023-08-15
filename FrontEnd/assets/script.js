@@ -61,32 +61,38 @@ const apiCall = async() => {
     });
 
 
-  
+
 }
 apiCall();
 
 
-//ouverture de la fenetre modal
-let modal = null
+// Fonction d'ouverture de la fenetre modal
+
+let modal = document.querySelector('.modal')
 
 const openModal = function (event){
-    event.preventDefault()
-    const target = document.querySelector(element.target.gatAttribute("href"))
-    target.style.display = null
-    target.removeAttribute("aria-hidden")
-    target.setAttribute("aria-modal", "true")
-    modal = targetmodal.addEventListener("click",closeModal)
+    event.preventDefault() // empêche rechargement de la page au clic pour rediriger vers url
+    modal.style.display = "flex"; 
+    modal.removeAttribute("aria-hidden") // retire attribut pour garantir accesibilité de la fenêtre modal aux technologie d'assistance
+    modal.setAttribute("aria-modal", "true") // ajoute attribut pour que les technologies d'asistance puisse identifier le type de contenue
+    modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
 }
 
-//fermeture de la fenêtre modal 
-const closeModal = function (event){
-    event.preventDefault()
-    modal.style.display = "none"
+// Fonction de fermeture de la fenêtre modal 
 
+const closeModal = function (event){
+    event.preventDefault() 
+    modal.style.display = "none"
     modal.setAttribute("aria-hiden", "true")
     modal.removeAttribute("aria-modal")
-    modal.removeEventListener("clisck", closeModal)
-    modal = null
+    modal.removeEventListener("clisck", closeModal)  
 }
 
+
+// Traitement de la fenêtre modale
+
+document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur chaque lien qui ont la class js-modal
+    a.addEventListener('click', openModal)   // apl fonction d'ouverture de la fenetre modal au clic sur ces liens
+    
+})
 
