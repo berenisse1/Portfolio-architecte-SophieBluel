@@ -36,13 +36,15 @@ function verifierEmail(balise) {
 
 //verifie si password respect le format reg exp définit 
 function verifierPassword(balise) { 
-    let passwordRegExp = new RegExp("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/")
+    let passwordRegExp = new RegExp("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}")
     if(passwordRegExp.test(balise.value)) {
         balise.classList.remove("error")
     } else {
         balise.classList.add("error")
     }
 }
+
+
 
 //Contrôle si les règles de validation sont verifiées lors de l'évenement
 
@@ -64,7 +66,7 @@ balisePassword.addEventListener("change", () => { //On verifie le password au ch
 })
 
 
-// Soumettre les données avec la méthode POST
+// Soumettre les données de connexion avec la méthode POST
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -76,7 +78,8 @@ form.addEventListener("submit", (e) => {
         messageError.innerText = "votre email ou votre mot de passe est incorectes";
     }
 
-    let raw = JSON.stringify({
+    // Méthode POST
+    let user = ({ 
         "email": email,
         "password" : password
     })
@@ -85,23 +88,22 @@ form.addEventListener("submit", (e) => {
         headers: {
             "Content-Type": "application/json;charset=utf-8" // en tête
         },
-        body: raw //charge utile transforme user en json
-
+        body: JSON.stringify(user) //charge utile transforme user en json
     })
+    // Réponse de l'API
     .then(function(response){
-
-        if(!response.ok){
+        if(!response.ok){ //si connexion refusée
             messageError.innerText = "Votre email ou votre mot de passe est incorrect"
-        } else {
-            response.json().then(function(data){
-                localStorage.setItem("token", data.token);
-                window.location = "index.html";
+        } else { //si connexion autorisée 
+            response.json().then(function(data){ 
+                localStorage.setItem("token", data.token); // Enregistre la réponse de l’API stock token dans le localStore
+                window.location = "index.html"; //redirection homepage  
             })
         }
     })
-    .catch(error =>
-        connsole.log("error" + error)
+    // Interception des erreurs 
+    .catch(error => // interomp code en cas d'erreur et signale erreur dans la console
+        connsole.log("error" + error) // sgnial chaine de caractère "erreur" + localisation de l'erreur
     );
     
 });
-
