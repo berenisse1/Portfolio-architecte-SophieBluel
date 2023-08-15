@@ -60,7 +60,8 @@ const apiCall = async() => {
         return showWork(apiData);
     });
 
-
+     // Affichage de la galerie dans la modal
+     document.querySelector(".modal-gallery").innerHTML = showWork(apiData); 
 
 }
 apiCall();
@@ -96,3 +97,4 @@ document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur
     
 })
 
+   
