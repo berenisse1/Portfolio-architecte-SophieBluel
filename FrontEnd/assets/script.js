@@ -121,6 +121,17 @@ console.log(token);
 console.log(editModal);
 console.log(btnModal);
 
+//Elements de déconnexion
+  
+if (token) {
+    let log = document.querySelector(".js-log")
+    log.innerHTML = "logout"
+    log.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        window.location.href = "login.html"
+    });
+}
+
 // Fonction d'ouverture de la fenetre modal
 
 let modal = document.querySelector('.modal')
