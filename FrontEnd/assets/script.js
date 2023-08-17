@@ -100,7 +100,6 @@ const apiCall = async() => {
 }
 apiCall();
 
-
 // élements de connexion
 let token = localStorage.getItem("token");
 let editModal = document.querySelector(".modal-edit");
@@ -121,19 +120,6 @@ if (token) {
 console.log(token);
 console.log(editModal);
 console.log(btnModal);
-//elements de déconnexion
- 
- 
-if (token) {
-    let log = document.querySelector(".log")
-    log.innerHTML = "logout"
-    log.addEventListener("click", () => {
-        localStorage.removeItem("token")
-        window.location.href = "login.html"
-    });
-}
-
-
 
 // Fonction d'ouverture de la fenetre modal
 
@@ -174,7 +160,3 @@ document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur
     a.addEventListener('click', openModal)   // apl fonction d'ouverture de la fenetre modal au clic sur ces liens
     
 })
-
-
-
-
