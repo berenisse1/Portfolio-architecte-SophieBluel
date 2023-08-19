@@ -59,7 +59,7 @@ const apiCall = async() => {
 
             btnMove = document.createElement('button');
             btnMove.classList.add("js-btn-move");
-            btnMove.innerHTML = '<i class="fa-solid "></i>';
+            btnMove.innerHTML = '<i class="fa-solid fa-arrows-up-down-left-right"></i>';
        
             modalGallery.appendChild(newFigure);
             newFigure.appendChild(newImg);
@@ -137,34 +137,35 @@ if (token) {
 
 // Fonction d'ouverture de la fenetre modal
 
-let modal = document.querySelector('.modal')
+
 
 const openModal = function (event){
+    const modal = document.querySelector('.modal')
     event.preventDefault() // empêche rechargement de la page au clic pour rediriger vers url
     modal.style.display = 'flex'; 
     modal.removeAttribute('aria-hidden') // retire attribut pour garantir accesibilité de la fenêtre modal aux technologie d'assistance
     modal.setAttribute('aria-modal', 'true') // ajoute attribut pour que les technologies d'asistance puisse identifier le type de contenue
     modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
-    modal.document.querySelector('.js-modal-close').addEventListener('click',closeModal) 
-    modal.document.querySelector('.js-modal-stop').addEventListener('click',stopPropagation) 
+    modal.querySelector('.js-modal-close').addEventListener('click',closeModal) 
+    modal.querySelector('.js-modal-stop').addEventListener('click',stopPropagation) 
 }
 
 // Fonction de fermeture de la fenêtre modal 
 
 const closeModal = function (event){
+    const modal = document.querySelector('.modal')
     event.preventDefault() 
     modal.style.display = 'none'
     modal.setAttribute('aria-hiden', 'true')
     modal.removeAttribute("aria-modal")
     modal.removeEventListener('clisck', closeModal)
-    modal.document.querySelector('.js-modal-close').addEventListener('click', closeModal) 
-    modal.document.querySelector('.js-modal-close').removeEventListener('click', closeModal) 
-    modal.document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation) 
+    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal) 
+    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation) 
 
 }
 
-const stopPropagation = function(event){
-    event.stopPropagation()
+const stopPropagation = function(e) {
+    e.stopPropagation()
 }
 
 // Traitement de la fenêtre modale
@@ -173,3 +174,5 @@ document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur
     a.addEventListener('click', openModal)   // apl fonction d'ouverture de la fenetre modal au clic sur ces liens
     
 })
+
+
