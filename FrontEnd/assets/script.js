@@ -9,6 +9,8 @@ const apiCall = async() => {
     .then((response) => response.json ()) // réponse requête transformer au format Json
     .then((data) => (apiData = data)) // cherche les donnés de l'api
 
+    //Génerer les travaux depuis l'API
+
     function showWork(apiData){
 
         apiData.forEach(element => { //boucle crée 1 par élement
@@ -16,12 +18,10 @@ const apiCall = async() => {
             newFigure = document.createElement('figure');
             newFigure.id = element.id;
 
-           
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
             newImg.crossOrigin = "anonymous";
-          
 
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = element.title;
@@ -35,6 +35,9 @@ const apiCall = async() => {
     }
     showWork(apiData);
 
+
+    //Générer la galerie de la fenêtre modale depuis l'API
+
     function editWork(apiData){
 
         apiData.forEach(element => { //boucle crée 1 par élement
@@ -42,25 +45,27 @@ const apiCall = async() => {
             newFigure = document.createElement('figure');
             newFigure.id = element.id;
 
-           
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
             newImg.crossOrigin = "anonymous";
 
-
             newFigcaption = document.createElement ('figcaption');
-            newFigcaption.innerText = element.title;
+            newFigcaption.innerText = "éditer";
 
+            btnDelete = document.createElement('button');
+            btnDelete.classList.add("js-btn-delete");
+            btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+
+            btnMove = document.createElement('button');
+            btnMove.classList.add("js-btn-move");
+            btnMove.innerHTML = '<i class="fa-solid "></i>';
+       
             modalGallery.appendChild(newFigure);
             newFigure.appendChild(newImg);
             newFigure.appendChild(newFigcaption);
-
-            btnDelete = document.createElement('button');
-            newImg.appendChild(btnDelete);
-            btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-            console.log(btnDelete)
-            
+            newFigure.appendChild(btnDelete);
+            newFigure.appendChild(btnMove);
 
         });
             
@@ -96,7 +101,6 @@ const apiCall = async() => {
         return showWork(apiData);
     });
 
-
 }
 apiCall();
 
@@ -115,7 +119,6 @@ if (token) {
     btnModal.forEach((button) => {
         button.style.display = "none";
     });
-
 }
 console.log(token);
 console.log(editModal);
@@ -158,7 +161,6 @@ const closeModal = function (event){
     modal.document.querySelector('.js-modal-close').removeEventListener('click', closeModal) 
     modal.document.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation) 
 
- 
 }
 
 const stopPropagation = function(event){
