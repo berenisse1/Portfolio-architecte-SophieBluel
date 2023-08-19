@@ -186,3 +186,13 @@ btnModalAddImg.addEventListener('click', () => {
     modalAddWorkContent.style.display = "flex";
 });
 
+// Retour sur la gallerie de la fenêtre modale
+
+const btnReturnModalWork = document.querySelector(".btn-return-modalWork");
+console.log(btnModalAddImg);
+
+btnReturnModalWork.addEventListener('click', () => {
+    modalWorkContent.style.display = "flex";
+    modalAddWorkContent.style.display = "none";
+
+});
