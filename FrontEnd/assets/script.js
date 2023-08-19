@@ -136,13 +136,14 @@ if (token) {
 }
 
 // Fonction d'ouverture de la fenetre modal
-
-
+const modal = document.querySelector('.modal')
+const modalWorkContent = document.querySelector(".modal-work-content");
+const modalAddWorkContent = document.querySelector(".modal-add-work-content");
 
 const openModal = function (event){
-    const modal = document.querySelector('.modal')
     event.preventDefault() // empêche rechargement de la page au clic pour rediriger vers url
     modal.style.display = 'flex'; 
+    modalAddWorkContent.style.display = "none";
     modal.removeAttribute('aria-hidden') // retire attribut pour garantir accesibilité de la fenêtre modal aux technologie d'assistance
     modal.setAttribute('aria-modal', 'true') // ajoute attribut pour que les technologies d'asistance puisse identifier le type de contenue
     modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
@@ -153,7 +154,6 @@ const openModal = function (event){
 // Fonction de fermeture de la fenêtre modal 
 
 const closeModal = function (event){
-    const modal = document.querySelector('.modal')
     event.preventDefault() 
     modal.style.display = 'none'
     modal.setAttribute('aria-hiden', 'true')
@@ -175,4 +175,23 @@ document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur
     
 })
 
+//Accés au contenu d'ajout de travaux de la fenêtre modal 
 
+const btnModalAddImg = document.querySelector(".btn-add-img");
+console.log(btnModalAddImg);
+
+btnModalAddImg.addEventListener('click', () => {
+    modalWorkContent.style.display = "none";
+    modalAddWorkContent.style.display = "flex";
+});
+
+// Retour sur la gallerie de la fenêtre modale
+
+const btnReturnModalWork = document.querySelector(".btn-return-modalWork");
+console.log(btnModalAddImg);
+
+btnReturnModalWork.addEventListener('click', () => {
+    modalWorkContent.style.display = "flex";
+    modalAddWorkContent.style.display = "none";
+
+});
