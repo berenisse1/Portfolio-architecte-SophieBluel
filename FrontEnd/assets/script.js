@@ -104,7 +104,7 @@ const apiCall = async() => {
 }
 apiCall();
 
-// élements de connexion
+// élements de connexion et de déconnexion
 let token = localStorage.getItem("token");
 let editModal = document.querySelector(".modal-edit");
 const btnModal = document.querySelectorAll(".btn-modal");
@@ -112,7 +112,13 @@ const btnModal = document.querySelectorAll(".btn-modal");
 if (token) {
     editModal.style.display = "flex";
     btnModal.forEach((button) => {
-        button.style.display = "flex";
+        button.style.display = "flex";   
+    });
+    let log = document.querySelector(".js-log")
+    log.innerHTML = "logout"
+    log.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        window.location.href = "login.html"
     });
 }else{
     editModal.style.display = "none";
@@ -123,17 +129,6 @@ if (token) {
 console.log(token);
 console.log(editModal);
 console.log(btnModal);
-
-//Elements de déconnexion
-  
-if (token) {
-    let log = document.querySelector(".js-log")
-    log.innerHTML = "logout"
-    log.addEventListener("click", () => {
-        localStorage.removeItem("token")
-        window.location.href = "login.html"
-    });
-}
 
 // Fonction d'ouverture de la fenetre modal
 
@@ -204,5 +199,5 @@ const chooseFile = document.getElementById('#photo')
 console.log(chooseFile)
 
 btnAddImg.addEventListener('click',() =>{
-    chooseFile.style.display = flex
+    chooseFile.style.display = "flex";
 })
