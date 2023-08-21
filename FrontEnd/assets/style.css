@@ -47,14 +47,14 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
+body{
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background: #FFFEF8;
-	max-width: 1140px;
-	margin:auto;
+	/*max-width: 1140px;
+	margin:auto;*/
 }
-/************/
+/**************/
 main{
 	max-width: 1140px;
 	margin:auto;
@@ -62,8 +62,9 @@ main{
 header  {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0px;
-	
+	padding: 38px;
+	max-width: 1140px;
+	margin:auto;
 }
 /*******édition*******/
 .modal-edit{
@@ -191,12 +192,25 @@ li:hover {
 	max-width: calc(100vw -20px);
 	max-height: calc(100vh - 20px);
 	padding: 20px;
-	background: #fffff8
+	background: #fff
+}
+.modal-icon{
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+.btn-return-modalWork{
+	font-size: 21px;
+	line-height: 1px;
+	position: absolute;
+	left: 5px;
 }
 .modal-wrapper .fa-xmark{
-	display: flex;
-	flex-direction: row-reverse;
+	position: absolute;
+	right: 5px;
+	font-size: 24px;
 }
+/***modale gallerie***/
 .modal-work-content{
 	display: flex;
 	flex-direction: column;
@@ -204,6 +218,8 @@ li:hover {
 }
 .modal-work-content h3{
 	font-size: 26px;
+	margin-top: 13px;
+	
 }
 .modal-gallery{	
 	margin: 46px 0px;
@@ -243,7 +259,7 @@ figure:hover .js-btn-move{
 	top: 3px;
 	right: 26px;
 }
-.fa-trash-can, .fa-arrows-up-down-left-right{
+.fa-trash-can,.fa-arrows-up-down-left-right{
 	font-size: x-small;
 }
 .delete-gallery{
@@ -255,6 +271,91 @@ figure:hover .js-btn-move{
     justify-content: center;
     height: 36px; 
 	border: none;
+}
+/**contenu modale ajout de travaux**/
+
+.modal-add-work-content h3{
+	font-size: 26px;	
+	max-width: 150px;
+	margin: auto;
+
+}
+.modal-add-work-content  form{
+	max-width: 420px;
+	margin: auto;
+}
+
+form .add-img{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 169px;
+	border: none;
+	border: 3px;
+	box-sizing: border-box;
+	background:#E8F1F6;
+	margin: 36px 0px 30px;
+}
+form .add-img i{
+	font-size: 58px;
+	color:#B9C5CC ;
+	margin: 22px 0px 15px 0px;
+}
+form .btn-add-img{
+	font-weight: 500;
+	color:#306685;
+	background: #CBD6DC;
+	width: 173px;
+	height: 36px;
+	text-align: center;
+	box-sizing: border-box;
+	border-radius: 50px ;
+	margin-bottom: 7px;
+	padding: 10px;
+}
+form .add-img input[type="file"]{
+	display: none;
+}
+form .add-img p{
+	color:  #444;
+	font-size: 10px;
+}
+form .balise-modal-add-work{
+	display:flex;
+	flex-direction: column;
+	margin-bottom: 47px;
+}
+.balise-modal-add-work label{
+	font-size: 14px;
+	color:#3D3D3D ;
+	margin-bottom: 10px;
+}
+.balise-modal-add-work input, .balise-modal-add-work select{
+	border: none;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+.btn-valid-addWork{
+	display: flex;
+	background: #A7A7A7;
+	color: #FFF;
+	font-weight: 500;
+	height: 36px;
+	border: none;
+	border-radius: 60px;
+	padding: 10px 49px 9px;
+	width: 236px;
+	max-width: 420px;
+	margin: auto;
+	margin-bottom: 35px;
+	margin-top: 32px;
+}
+.btn-valid-addWork:hover{
+	background-color: #1D6154;
+}
+.line{
+	color: #B3B3B3;
+
 }
 /******filtres*******/
 .filters{
@@ -333,11 +434,15 @@ input[type="submit"]{
 }
 footer{
 	background: #FFF;
-	height: 60px;	
+	height: 60px;
+	padding: 0.1px 97px;
 }
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em;
+}
+footer nav ul li {
+	font-size: 14px;
 }
 
