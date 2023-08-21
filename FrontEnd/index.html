@@ -25,7 +25,7 @@
 			<ul>
 				<li>projets</li>
 				<li><a href="#contact">contact</a></li>
-				<li><a href="./login.html">login</a></li>
+				<li><a href="./login.html" class="js-log">login</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -58,13 +58,48 @@
 				</button>
 			</a>
 			<aside id="modal-work" class="modal" aria-hidden="true" role="dialog">
-				<div class="modal-wrapper">
-					<i class="fa-solid fa-xmark"></i>
+				<div class="modal-wrapper js-modal-stop">
+					<div class="modal-icon">
+						<i class="fa-solid fa-xmark js-modal-close"></i>
+					</div>
 					<div class="modal-work-content">
 						<h3>Galerie photo</h3>
 						<div class="modal-gallery"></div>
-						<input type="submit" value="Ajouter une photo" class="submit">
+						<hr>
+						<input type="submit" value="Ajouter une photo" class="submit btn-add-img">
 						<p class="delete-gallery">Supprimer la galerie</p>
+					</div>
+					<div class="modal-add-work-content">
+						<div class="modal-icon">
+							<i class="fa-solid fa-arrow-left btn-return-modalWork"></i>
+						</div>
+						<h3>Ajout photo</h3>
+						<form action="">
+							<div class="add-img">
+								<i class="fa-regular fa-image"></i>
+								<img src="" class="">
+								<label for="photo" class="btn-add-img">+ Ajouter photo</label>
+								<input type="file" id="photo" name="photo">
+								<p>jpg, png : 4mo max</p>
+							</div>
+							<div>
+								<div class="balise-modal-add-work">
+									<label for="titre">Titre</label>
+									<input type="text" id="titre" name="titre">
+								</div>
+								<div class="balise-modal-add-work">
+									<label for="categorie">Catégorie</label>
+									<select name="categorie" id="categorie">
+										<option value=""></option>
+										<option value="objets">Objets</option>
+										<option value="Appartements">Appartements</option>
+										<option value="hotels-et-restaurants">Hotêls et restaurants</option>
+									</select>
+								</div>
+							</div>
+							<hr class="line">
+							<button class=" submit btn-valid-addWork">valider</button>
+						</form>
 					</div>
 				</div>
 			</aside>	
