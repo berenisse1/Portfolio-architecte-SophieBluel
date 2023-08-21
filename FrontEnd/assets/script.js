@@ -183,7 +183,7 @@ console.log(btnModalAddImg);
 
 btnModalAddImg.addEventListener('click', () => {
     modalWorkContent.style.display = "none";
-    modalAddWorkContent.style.display = "flex";
+    modalAddWorkContent.style.display = "block";
 });
 
 // Retour sur la gallerie de la fenêtre modale
@@ -196,3 +196,13 @@ btnReturnModalWork.addEventListener('click', () => {
     modalAddWorkContent.style.display = "none";
 
 });
+
+// Ajout de fichier depuis la fenêtre modale
+const btnAddImg = document.querySelector("btn-ad-img");
+console.log(btnAddImg);
+const chooseFile = document.getElementById('#photo')
+console.log(chooseFile)
+
+btnAddImg.addEventListener('click',() =>{
+    chooseFile.style.display = flex
+})
