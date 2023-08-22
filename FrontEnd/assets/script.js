@@ -22,7 +22,7 @@ const apiCall = async() => {
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
             newImg.crossOrigin = "anonymous";
-
+            
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = element.title;
 
@@ -193,7 +193,7 @@ btnReturnModalWork.addEventListener('click', () => {
 });
 
 // Ajout de fichier depuis la fenêtre modale
-const btnAddImg = document.querySelector("btn-ad-img");
+const btnAddImg = document.querySelector(".btn-add-file");
 console.log(btnAddImg);
 const chooseFile = document.getElementById('#photo')
 console.log(chooseFile)

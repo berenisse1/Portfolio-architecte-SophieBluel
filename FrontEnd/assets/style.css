@@ -301,7 +301,7 @@ form .add-img i{
 	color:#B9C5CC ;
 	margin: 22px 0px 15px 0px;
 }
-form .btn-add-img{
+form .btn-add-file{
 	font-weight: 500;
 	color:#306685;
 	background: #CBD6DC;
@@ -355,7 +355,6 @@ form .balise-modal-add-work{
 }
 .line{
 	color: #B3B3B3;
-
 }
 /******filtres*******/
 .filters{
