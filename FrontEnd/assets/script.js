@@ -21,7 +21,7 @@ const apiCall = async() => {
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
-            newImg.crossOrigin = "Anonymous";
+            newImg.crossOrigin = "anonymous";
             
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = element.title;
@@ -48,7 +48,7 @@ const apiCall = async() => {
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
-            newImg.crossOrigin = "Anonymous";
+            newImg.crossOrigin = "anonymous";
 
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = "éditer";
