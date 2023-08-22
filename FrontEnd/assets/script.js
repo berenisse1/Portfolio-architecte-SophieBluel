@@ -21,7 +21,7 @@ const apiCall = async() => {
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
-            newImg.crossOrigin = "anonymous";
+            newImg.crossOrigin = "Anonymous";
             
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = element.title;
@@ -48,7 +48,7 @@ const apiCall = async() => {
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
-            newImg.crossOrigin = "anonymous";
+            newImg.crossOrigin = "Anonymous";
 
             newFigcaption = document.createElement ('figcaption');
             newFigcaption.innerText = "éditer";
@@ -194,7 +194,7 @@ btnReturnModalWork.addEventListener('click', () => {
 
 // Ajout de fichier depuis la fenêtre modale
 const btnAddImg = document.querySelector(".btn-add-file");
-console.log(btnAddImg);
+console.log(btnAddImg);l
 const chooseFile = document.getElementById('#photo')
 console.log(chooseFile)
 
