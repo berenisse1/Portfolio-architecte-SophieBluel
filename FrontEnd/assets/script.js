@@ -135,16 +135,20 @@ console.log(btnModal);
 const modal = document.querySelector('.modal')
 const modalWorkContent = document.querySelector(".modal-work-content");
 const modalAddWorkContent = document.querySelector(".modal-add-work-content");
+const btnReturnModalWork = document.querySelector(".btn-return-modalWork");
 
 const openModal = function (event){
     event.preventDefault() // empêche rechargement de la page au clic pour rediriger vers url
-    modal.style.display = 'flex'; 
-    modalAddWorkContent.style.display = "none";
+    modal.style.display = 'flex';
+    modalWorkContent.style.display = 'flex'; 
+    btnReturnModalWork.style.display = "none";
+    modalAddWorkContent.style.display = 'none'; 
     modal.removeAttribute('aria-hidden') // retire attribut pour garantir accesibilité de la fenêtre modal aux technologie d'assistance
     modal.setAttribute('aria-modal', 'true') // ajoute attribut pour que les technologies d'asistance puisse identifier le type de contenue
     modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
     modal.querySelector('.js-modal-close').addEventListener('click',closeModal) 
     modal.querySelector('.js-modal-stop').addEventListener('click',stopPropagation) 
+  
 }
 
 // Fonction de fermeture de la fenêtre modal 
@@ -152,12 +156,13 @@ const openModal = function (event){
 const closeModal = function (event){
     event.preventDefault() 
     modal.style.display = 'none'
+    modalAddWorkContent.style.display = 'null';
+    btnReturnModalWork.style.display = "null";
     modal.setAttribute('aria-hiden', 'true')
     modal.removeAttribute("aria-modal")
     modal.removeEventListener('clisck', closeModal)
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal) 
-    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation) 
-
+    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)   
 }
 
 const stopPropagation = function(e) {
@@ -176,28 +181,32 @@ document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur
 const btnModalAddImg = document.querySelector(".btn-add-img");
 console.log(btnModalAddImg);
 
+
 btnModalAddImg.addEventListener('click', () => {
     modalWorkContent.style.display = "none";
-    modalAddWorkContent.style.display = "block";
+    btnReturnModalWork.style.display = "block";
+    modalAddWorkContent.style.display = "block";    
 });
 
-// Retour sur la gallerie de la fenêtre modale
 
-const btnReturnModalWork = document.querySelector(".btn-return-modalWork");
-console.log(btnModalAddImg);
+// Ajout de fichier depuis la fenêtre modale
+const btnAddFile = document.querySelector(".btn-add-file");
+console.log(btnAddFile);
+const chooseFile = document.getElementById('#photo')
+console.log(chooseFile)
+
+btnAddFile.addEventListener('click',() =>{
+    chooseFile.style.display = "flex";
+})
+
+
+// Retour sur la gallerie de la fenêtre modale
 
 btnReturnModalWork.addEventListener('click', () => {
     modalWorkContent.style.display = "flex";
     modalAddWorkContent.style.display = "none";
+    btnReturnModalWork.style.display = "none";
+    modalAddWorkContent.removeEventListener('click', )
+    chooseFile.removeEventListener('click', )
 
 });
-
-// Ajout de fichier depuis la fenêtre modale
-const btnAddImg = document.querySelector(".btn-add-file");
-console.log(btnAddImg);l
-const chooseFile = document.getElementById('#photo')
-console.log(chooseFile)
-
-btnAddImg.addEventListener('click',() =>{
-    chooseFile.style.display = "flex";
-})
