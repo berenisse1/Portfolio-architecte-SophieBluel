@@ -204,7 +204,23 @@ btnReturnModalWork.addEventListener('click', () => {
 });
 
 
-// Suprimer les travaux avec méthode DELETE
+// fonction pour prévisualiser la photo avant ajout 
+
+const image = document.getElementById("image");
+     
+const previewPhoto  = function (event) {
+
+    const [photo] = event.files // evenement qui contient un objet fileList
+
+    if (photo) {
+        // On génère l'URL de l'image
+        image.src = URL.createObjectURL(photo)
+        document.querySelector('.js-ampty-preview-container').style.display = "none"
+    }
+}
+
+
+// Supression des travaux avec méthode DELETE
 
 function deleteWork (){
 
@@ -212,7 +228,7 @@ function deleteWork (){
     const idWork =document.querySelector(`button.js-btn-delete[data-id]`); // on récupere la data-id de l'élement buton de supression
     console.log(idWork)
     
-    //appel fetch avec méthode POST
+    //Appel fetch avec méthode DELETE pour suprimer projet selon son id
     fetch(`http://localhost:5678/api/works/${idWork}`, {
         method: 'DELETE',
         headers: {
@@ -245,29 +261,14 @@ function removeWork(){
 }
 
 
-// fonction pour prévisualiser la photo avant ajout 
-
-let image = document.getElementById("image");
-     
-let previewPhoto  = function (event) {
-
-    const [photo] = event.files // evenement qui contient un objet fileList
-
-    if (photo) {
-        // On génère l'URL de l'image
-        image.src = URL.createObjectURL(photo)
-        document.querySelector('.js-ampty-preview-container').style.display = "none"
-    }
-}
-
-// Soumettre les données du projet ajouté méthode POST
+// Soumettre les données du projet a ajouté méthode POST
 
 function addWork() {
 
     const form = document.getElementById("form-add-file");
-    const inputTitle = document.getElementById("title").file;
-    const inputPicture = document.getElementById("picture").value;
-    const SelectCategory = document.getElementById("category").value;
+    const inputTitle = document.getElementById("title");
+    const inputPhoto = document.getElementById("photo");
+    const SelectCategory = document.getElementById("category");
     let messageError = document.querySelector(".msg-error");
 
     form.addEventListener("submit", (event) => {
@@ -275,16 +276,15 @@ function addWork() {
         let urlUsersLogin = `http://localhost:5678/api/works`;
 
 
-        // Récupération de la valeur des champ de formulaire avec  objet formData
+        // Récupération de la valeur des champs de formulaire avec  objet formData
         let formData = new FormData();
-        formData.append("image", inputPicture.files[0]);
+        formData.append("image", inputPhoto.files[0]);
         formData.append("title", inputTitle.value);
         formData.append("category", SelectCategory.value);
         console.log(formData)
     
-        if (inputPicture.value === "" || inputTitle.value === "" || SelectCategory.value === "") {
+        if (inputPhoto.value === "" || inputTitle.value === "" || SelectCategory.value === "") {
             messageError.innerText = "Veuillez renseigner tous les champs de saisie!";
-            formData.balise.classList.add("error")
         }
     
         // Méthode POST
