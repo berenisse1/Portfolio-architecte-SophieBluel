@@ -245,3 +245,21 @@ function removeWork(){
     console.log(figureToDelete)   
 }
 
+
+// fonction pour prévisualiser la photo avant ajout 
+
+let image = document.getElementById("image");
+     
+let previewPhoto  = function (event) {
+
+    const [photo] = event.files // evenement qui contient un objet fileList
+
+    if (photo) {
+        // On génère l'URL de l'image
+        image.src = URL.createObjectURL(photo)
+        document.querySelector('.js-ampty-preview-container').style.display = "none"
+    }
+}
+
+
+
