@@ -16,7 +16,6 @@ const apiCall = async() => {
 
             newFigure = document.createElement('figure');
             newFigure.id = element.id;
-            //newFigure.setAttribute('data-id', element.id);//
 
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
@@ -261,5 +260,58 @@ let previewPhoto  = function (event) {
     }
 }
 
+// Soumettre les données du projet ajouté méthode POST
 
+function addWork() {
+
+    const form = document.getElementById("form-add-file");
+    const inputTitle = document.getElementById("title").file;
+    const inputPicture = document.getElementById("picture").value;
+    const SelectCategory = document.getElementById("category").value;
+    let messageError = document.querySelector(".msg-error");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let urlUsersLogin = `http://localhost:5678/api/works`;
+
+
+        // Récupération de la valeur des champ de formulaire avec  objet formData
+        let formData = new FormData();
+        formData.append("image", inputPicture.files[0]);
+        formData.append("title", inputTitle.value);
+        formData.append("category", SelectCategory.value);
+        console.log(formData)
+    
+        if (inputPicture.value === "" || inputTitle.value === "" || SelectCategory.value === "") {
+            messageError.innerText = "Veuillez renseigner tous les champs de saisie!";
+            formData.balise.classList.add("error")
+        }
+    
+        // Méthode POST
+        fetch(urlUsersLogin, {
+    
+            method: "POST",
+            body: JSON.stringify(formData) //charge utile transforme formData en json
+        })
+    
+        // Réponse de l'API
+        .then(function(response){
+            if(!response.ok){ 
+                messageError.innerTexte = '<p> erreur impossible d ajouter le fichier <p>'
+            } else { 
+                response.json().then(function(data){
+                    console.log(result.message);
+                })
+            }
+            
+        })
+        // Interception des erreurs 
+        .catch(error => 
+            connsole.log("error" + error) 
+        );
+            
+    });
+    
+};
+addWork();
 
