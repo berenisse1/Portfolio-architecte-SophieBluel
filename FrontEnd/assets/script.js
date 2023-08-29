@@ -3,7 +3,6 @@ let section = document.querySelector('.gallery');// on va chercher la class gall
 let modalGallery = document.querySelector('.modal-gallery') 
 
 
-
 const apiCall = async() => {
     await fetch(urlWorks) // pour faire attendre pendant le traitement
     .then((response) => response.json ()) // réponse requête transformer au format Json
@@ -17,6 +16,7 @@ const apiCall = async() => {
 
             newFigure = document.createElement('figure');
             newFigure.id = element.id;
+            //newFigure.setAttribute('data-id', element.id);//
 
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
@@ -29,6 +29,7 @@ const apiCall = async() => {
             section.appendChild(newFigure);
             newFigure.appendChild(newImg);
             newFigure.appendChild(newFigcaption);
+
 
         });
             
@@ -44,7 +45,7 @@ const apiCall = async() => {
 
             newFigure = document.createElement('figure');
             newFigure.id = element.id;
-
+            
             newImg = document.createElement('img');
             newImg.src = element.imageUrl;
             newImg.alt = element.title;
@@ -56,6 +57,8 @@ const apiCall = async() => {
             btnDelete = document.createElement('button');
             btnDelete.classList.add("js-btn-delete");
             btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+            btnDelete.setAttribute('data-id', element.id);
+            console.log(btnDelete)
 
             btnMove = document.createElement('button');
             btnMove.classList.add("js-btn-move");
@@ -67,11 +70,15 @@ const apiCall = async() => {
             newFigure.appendChild(btnDelete);
             newFigure.appendChild(btnMove);
 
+            btnDelete.addEventListener('click', () => {
+                deleteWork()
+            
+            });
+          
         });
             
     }
     editWork(apiData);
-
 
     //Traitement des filtres
 
@@ -81,8 +88,8 @@ const apiCall = async() => {
     btnFiltre.forEach(button => { // boucle crée 1 par boutton
 
         button.addEventListener('click', () => {  // crée un évenement au clic
-        const dataId = button.dataset.id //Crée une constante pour chercher le data-id du bouton
-        let filtre = apiData.filter(function(element){ //Crée variable pour filtrer les données API 
+            const dataId = button.dataset.id //Crée une constante pour chercher le data-id du bouton
+            let filtre = apiData.filter(function(element){ //Crée variable pour filtrer les données API 
             return element.categoryId == dataId; // Retourne id de la catégorie en fonction de id du button
         });
         document.querySelector('.gallery').innerHTML = '';
@@ -104,9 +111,10 @@ const apiCall = async() => {
 }
 apiCall();
 
-// élements de connexion et de déconnexion
-let token = localStorage.getItem("token");
-let editModal = document.querySelector(".modal-edit");
+// Elements de connexion et de déconnexion
+
+const token = localStorage.getItem("token");
+const editModal = document.querySelector(".modal-edit");
 const btnModal = document.querySelectorAll(".btn-modal");
  
 if (token) {
@@ -126,9 +134,6 @@ if (token) {
         button.style.display = "none";
     });
 }
-console.log(token);
-console.log(editModal);
-console.log(btnModal);
 
 // Fonction d'ouverture de la fenetre modal
 
@@ -148,7 +153,6 @@ const openModal = function (event){
     modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
     modal.querySelector('.js-modal-close').addEventListener('click',closeModal) 
     modal.querySelector('.js-modal-stop').addEventListener('click',stopPropagation) 
-  
 }
 
 // Fonction de fermeture de la fenêtre modal 
@@ -188,17 +192,7 @@ btnModalAddImg.addEventListener('click', () => {
     modalAddWorkContent.style.display = "block";    
 });
 
-
-// Ajout de fichier depuis la fenêtre modale
-const btnAddFile = document.querySelector(".btn-add-file");
-console.log(btnAddFile);
-const chooseFile = document.getElementById('#photo')
-console.log(chooseFile)
-
-btnAddFile.addEventListener('click',() =>{
-    chooseFile.style.display = "flex";
-})
-
+///
 
 // Retour sur la gallerie de la fenêtre modale
 
@@ -206,7 +200,48 @@ btnReturnModalWork.addEventListener('click', () => {
     modalWorkContent.style.display = "flex";
     modalAddWorkContent.style.display = "none";
     btnReturnModalWork.style.display = "none";
-    modalAddWorkContent.removeEventListener('click', )
-    chooseFile.removeEventListener('click', )
+    modalAddWorkContent.removeEventListener('click', btnReturnModalWork )
 
 });
+
+
+// Suprimer les travaux avec méthode DELETE
+
+function deleteWork (){
+
+    const btnDelete = document.querySelector('.js-btn-delete') // récupere element bouton de supression
+    const idWork =document.querySelector(`button.js-btn-delete[data-id]`); // on récupere la data-id de l'élement buton de supression
+    console.log(idWork)
+    
+    //appel fetch avec méthode POST
+    fetch(`http://localhost:5678/api/works/${idWork}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${token}'
+        }  
+    })
+     // Réponse de l'API
+    .then (response =>{
+        if(response.ok){ 
+            console.log("le projet à bien été suprimer")
+            btnDelete.ParentElement.remove 
+            removeWork()
+        } 
+    })
+    // Interception des erreurs 
+    .catch(error => 
+    connsole.log("error" + error)
+    );
+
+}
+
+function removeWork(){
+    const idWork =document.querySelector(`button.js-btn-delete[data-id]`);
+    const idFigure = document.querySelector('figure[data-id]')
+    const figureToDelete  = idFigure = idWork
+    figureToDelete.remove
+
+    console.log(figureToDelete)   
+}
+
