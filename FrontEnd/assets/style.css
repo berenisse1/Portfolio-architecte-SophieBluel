@@ -189,8 +189,6 @@ li:hover {
 	overflow: auto;
 	width: 600px;
 	height: 400px;
-	max-width: calc(100vw -20px);
-	max-height: calc(100vh - 20px);
 	padding: 20px;
 	background: #fff
 }
