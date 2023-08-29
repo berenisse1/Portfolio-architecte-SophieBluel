@@ -341,8 +341,12 @@ form .balise-modal-add-work{
 	height: 51px;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
 }
+.msg-error{
+	margin-top: 10px;
+	color:#D65353 ;
+}
 .error{
-    box-shadow: 0px 2px 7px 0px red; 
+    box-shadow: 0px 2px 7px 0px #D65353; 
 }
 .btn-valid-addWork{
 	display: flex;
