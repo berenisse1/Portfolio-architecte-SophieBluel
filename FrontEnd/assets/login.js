@@ -103,7 +103,7 @@ form.addEventListener("submit", (e) => {
     })
     // Interception des erreurs 
     .catch(error => // interomp code en cas d'erreur et signale erreur dans la console
-        connsole.log("error" + error) // sgnial chaine de caractère "erreur" + localisation de l'erreur
+        console.log("error" + error) // sgnial chaine de caractère "erreur" + localisation de l'erreur
     );
     
 });
