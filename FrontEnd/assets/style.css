@@ -329,7 +329,7 @@ form .add-img p{
 form .balise-modal-add-work{
 	display:flex;
 	flex-direction: column;
-	margin-bottom: 47px;
+	margin-bottom: 26px;
 }
 .balise-modal-add-work label{
 	font-size: 14px;
@@ -340,10 +340,12 @@ form .balise-modal-add-work{
 	border: none;
 	height: 51px;
 	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	margin-bottom: 21px;
 }
-.msg-error{
-	margin-top: 10px;
-	color:#D65353 ;
+.msg-resp-delete , .msg-resp-add{ 
+	color:#D65353;
+	margin-top: 0px;
+	font-size: 14px;
 }
 .error{
     box-shadow: 0px 2px 7px 0px #D65353; 
