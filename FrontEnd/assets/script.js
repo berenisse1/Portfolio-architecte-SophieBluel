@@ -1,6 +1,6 @@
-let urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
-let section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
-let modalGallery = document.querySelector('.modal-gallery') 
+const urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
+const section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
+const modalGallery = document.querySelector('.modal-gallery');
 
 
 const apiCall = async() => {
@@ -70,8 +70,11 @@ const apiCall = async() => {
             newFigure.appendChild(btnMove);
 
             btnDelete.addEventListener('click', () => {
-                deleteWork()
-            
+                deleteWork(element.id) 
+                //deleteWork(idWork)
+                //showWork(apiData)
+                //editWork(apiData)
+               
             });
           
         });
@@ -220,41 +223,49 @@ const previewPhoto  = function (event) {
 }
 
 
+
 // Supression des travaux avec méthode DELETE
 
-function deleteWork (){
+let msgRespDelete = document.querySelector(".msg-resp-delete")
 
-    const btnDelete = document.querySelector('.js-btn-delete') // récupere element bouton de supression
-    const idWork =document.querySelector(`button.js-btn-delete[data-id]`); // on récupere la data-id de l'élement buton de supression
-    console.log(idWork)
+function deleteWork (idWork){
+    
+    //const idWork =document.querySelector(`button.js-btn-delete[data-id]`); // on récupere la data-id de l'élement buton de supression
+    //const btnDelete = document.querySelector('.js-btn-delete'); // récupere element bouton de supression
+    //console.log(idWork)
     
     //Appel fetch avec méthode DELETE pour suprimer projet selon son id
     fetch(`http://localhost:5678/api/works/${idWork}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${token}'
+            'Authorization': `Bearer ${token}`
         }  
     })
      // Réponse de l'API
     .then (response =>{
         if(response.ok){ 
-            console.log("le projet à bien été suprimer")
-            btnDelete.ParentElement.remove 
+            msgRespDelete.innerText = "Projet suprimé!"
+            btnDelete.parentElement.remove() 
             removeWork()
+            document.querySelector('.gallery').innerHTML = '';
+            document.querySelector('.modal-gallery').innerHTML = '';
+            return apiCall()
+            
         } 
     })
+   
     // Interception des erreurs 
     .catch(error => 
-    connsole.log("error" + error)
+    console.log("error" + error)
     );
-
+   
 }
 
 function removeWork(){
-    const idWork =document.querySelector(`button.js-btn-delete[data-id]`);
-    const idFigure = document.querySelector('figure[data-id]')
-    const figureToDelete  = idFigure = idWork
+    let idWork =document.querySelector(`button.js-btn-delete[data-id]`);
+    let idFigure = document.querySelector('figure[data-id]')
+    let figureToDelete  = idFigure = idWork
     figureToDelete.remove
 
     console.log(figureToDelete)   
@@ -263,55 +274,87 @@ function removeWork(){
 
 // Soumettre les données du projet a ajouté méthode POST
 
+const form = document.getElementById("form-add-file");
+let msgRespAdd = document.querySelector(".msg-resp-add")
+
 function addWork() {
-
-    const form = document.getElementById("form-add-file");
-    const inputTitle = document.getElementById("title");
-    const inputPhoto = document.getElementById("photo");
-    const SelectCategory = document.getElementById("category");
-    let messageError = document.querySelector(".msg-error");
-
+    
+   
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        let urlUsersLogin = `http://localhost:5678/api/works`;
+
+        const inputTitle = document.getElementById("title");
+        console.log(inputTitle);
+        const inputPhoto = document.getElementById("photo");
+        console.log(inputPhoto);
+        const selectCategory = document.getElementById("category");
+        console.log(selectCategory);
+        
+
+        let formData = new FormData();
+        formData.append("image", inputPhoto.files[0]);
+        console.log(inputPhoto.files[0]);
+        formData.append("title", inputTitle.value);
+        console.log(inputTitle.value);
+        formData.append("category", selectCategory.options[selectCategory.selectedIndex].value);
+        console.log(selectCategory.options[selectCategory.selectedIndex].value);
+        console.log(formData)
+
+        if (inputTitle.value === '' || inputPhoto.value === '' || selectCategory.value === '') {
+            msgRespAdd.innerText = "Veuillez renseigner tous les champs de saisie!";
+        }
+        console.log(msgRespAdd)
 
 
         // Récupération de la valeur des champs de formulaire avec  objet formData
-        let formData = new FormData();
-        formData.append("image", inputPhoto.files[0]);
-        formData.append("title", inputTitle.value);
-        formData.append("category", SelectCategory.value);
-        console.log(formData)
-    
-        if (inputPhoto.value === "" || inputTitle.value === "" || SelectCategory.value === "") {
-            messageError.innerText = "Veuillez renseigner tous les champs de saisie!";
-        }
-    
+     
         // Méthode POST
-        fetch(urlUsersLogin, {
-    
+        let postAdd = {
             method: "POST",
-            body: JSON.stringify(formData) //charge utile transforme formData en json
-        })
-    
+            headers: {
+                //'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            }, 
+            body: formData
+
+        }   
+
+        fetch('http://localhost:5678/api/works', postAdd)
         // Réponse de l'API
         .then(function(response){
             if(!response.ok){ 
-                messageError.innerTexte = '<p> erreur impossible d ajouter le fichier <p>'
+                //msgRespAdd.innerTexte = "Erreur ajout de projet impossible"
             } else { 
+                //msgRespAdd.innerTexte = "projet ajouter avec succés"
                 response.json().then(function(data){
-                    console.log(result.message);
+
+                    let msgResponse = document.querySelector(".msg-resp");
+                    msgRespAdd.innerTexte = "Nouveau projet ajouté avec succés"
+                   
+                    document.querySelector('.gallery').innerHTML = '';
+                    document.querySelector('.modal-gallery').innerHTML = '';
+                    return apiCall() 
+                    
+
                 })
-            }
+            
+            }   
+            
             
         })
         // Interception des erreurs 
         .catch(error => 
-            connsole.log("error" + error) 
+            console.log("error" + error) 
         );
-            
+          
+     
     });
-    
-};
-addWork();
+  
+
+}
+addWork() 
+
+
+
+
 
