@@ -258,15 +258,19 @@ figure:hover .js-btn-move{
 .fa-trash-can,.fa-arrows-up-down-left-right{
 	font-size: x-small;
 }
-.delete-gallery{
-	color:#D65353;
-	font-size: 14px;
+.line{
+	color: #B3B3B3;
+	width: 75%;
 }
 .submit{
     display: flex;
     justify-content: center;
     height: 36px; 
 	border: none;
+}
+.delete-gallery{
+	color:#D65353;
+	font-size: 14px;
 }
 /**contenu modale ajout de travaux**/
 
@@ -365,10 +369,7 @@ form .balise-modal-add-work{
 .btn-valid-addWork:hover{
 	background-color: #1D6154;
 }
-.line{
-	color: #B3B3B3;
-	width: 100%;
-}
+
 .line-add{
 	color: #B3B3B3;
 }
