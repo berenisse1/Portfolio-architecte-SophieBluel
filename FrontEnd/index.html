@@ -74,7 +74,7 @@
 					</div>
 					<div class="modal-add-work-content">
 						<h3>Ajout photo</h3>
-						<form method=" " url="/upload-picture" enctype="multipart/form-data" id = form-add-file>
+						<form method="POST" action="/upload-picture" enctype="multipart/form-data" id = form-add-file>
 							<div class="add-img">
 								<img src="#" alt="" id="image">
 								<div class=" js-ampty-preview-container">
@@ -82,25 +82,17 @@
 								    <label for="photo" class="btn-add-file">+ Ajouter photo</label>
 								    <p>jpg, png : 4mo max</p>  
 								</div>
-								<input type="file" id="photo" name="photo" onchange="previewPhoto(this)" required >
+								<input type="file" id="photo" name="photo" onchange="previewPhoto(this)">
 							</div>
 							<div>
 								<div class="balise-modal-add-work">
 									<label for="title">Titre</label>
 									<input type="text" id="title" name="titre">
 								</div>
-								<div class="balise-modal-add-work selectCategory">
-									<!--<label for="category">Catégorie</label>
-									<select name="category" id="category">
-										<option value=""></option>
-										<option value="objets">Objets</option>
-										<option value="Appartements">Appartements</option>
-										<option value="hotels-et-restaurants">Hotêls et restaurants</option>
-									</select>-->
-								</div>
+								<div class="balise-modal-add-work selectCategory"></div>
 							</div>
 							<p class="msg-resp-add"></p>
-							<hr class="line">
+							<hr class="line-add">
 							<button class=" submit btn-valid-addWork">valider</button>
 						</form>
 						
@@ -108,62 +100,8 @@
 				</div>
 			</aside>
 		</div>
-		<div class= "filters">
-			<!--
-		<button class ="all-filter">Tous</button>
-		<button class = "btn-filter">Objets</button>
-		<button class = "btn-filter">Appartements</button>
-		<button class = "btn-filter">Hotels & restaurants</button>
-		  -->
-	    </div>    
-		<div class="gallery">
-			<!--	
-			<figure>
-			    <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
-		    -->
-		</div>
+		<div class= "filters"></div>    
+		<div class="gallery"></div>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
