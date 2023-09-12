@@ -71,9 +71,7 @@ const apiCall = async() => {
 
             btnDelete.addEventListener('click', () => {
                 deleteWork(element.id) 
-                //deleteWork(idWork)
-                //showWork(apiData)
-                //editWork(apiData)
+               
                
             });
           
@@ -118,8 +116,10 @@ apiCall();
 const token = localStorage.getItem("token");
 const editModal = document.querySelector(".modal-edit");
 const btnModal = document.querySelectorAll(".btn-modal");
+const filtering = document.querySelector(".filters");
  
 if (token) {
+    filtering.style.display = "none"
     editModal.style.display = "flex";
     btnModal.forEach((button) => {
         button.style.display = "flex";   
@@ -161,9 +161,10 @@ const openModal = function (event){
 
 const closeModal = function (event){
     event.preventDefault() 
-    modal.style.display = 'none'
+    resetModal()
     modalAddWorkContent.style.display = 'null';
     btnReturnModalWork.style.display = "null";
+    modal.style.display = 'none'
     modal.setAttribute('aria-hiden', 'true')
     modal.removeAttribute("aria-modal")
     modal.removeEventListener('clisck', closeModal)
@@ -191,10 +192,10 @@ console.log(btnModalAddImg);
 btnModalAddImg.addEventListener('click', () => {
     modalWorkContent.style.display = "none";
     btnReturnModalWork.style.display = "block";
-    modalAddWorkContent.style.display = "block";    
+    modalAddWorkContent.style.display = "block"; 
+    msgRespDelete.innerHTML = ''
 });
 
-///
 
 // Retour sur la gallerie de la fenêtre modale
 
@@ -202,8 +203,10 @@ btnReturnModalWork.addEventListener('click', () => {
     modalWorkContent.style.display = "flex";
     modalAddWorkContent.style.display = "none";
     btnReturnModalWork.style.display = "none";
-    modalAddWorkContent.removeEventListener('click', btnReturnModalWork )
-
+    msgRespAdd.innerHTML = ''
+    modalAddWorkContent.removeEventListener('click', btnReturnModalWork );
+    image.removeEventListener('click', btnModalAddImg)
+     
 });
 
 
@@ -219,20 +222,27 @@ const previewPhoto  = function (event) {
         // On génère l'URL de l'image
         image.src = URL.createObjectURL(photo)
         document.querySelector('.js-ampty-preview-container').style.display = "none"
+        resetModal()
     }
 }
 
+function resetModal(){
+    image.addEventListener('click', () =>{
+        document.querySelector('.js-ampty-preview-container').style.display = "flex"
+        document.getElementById('form-add-file').reset()
+        msgRespAdd.innerHTML = ''
+        msgRespDelete = ''
+        image.src = ''
+       
+    })
 
+}   
 
 // Supression des travaux avec méthode DELETE
 
 let msgRespDelete = document.querySelector(".msg-resp-delete")
 
 function deleteWork (idWork){
-    
-    //const idWork =document.querySelector(`button.js-btn-delete[data-id]`); // on récupere la data-id de l'élement buton de supression
-    //const btnDelete = document.querySelector('.js-btn-delete'); // récupere element bouton de supression
-    //console.log(idWork)
     
     //Appel fetch avec méthode DELETE pour suprimer projet selon son id
     fetch(`http://localhost:5678/api/works/${idWork}`, {
@@ -266,9 +276,7 @@ function removeWork(){
     let idWork =document.querySelector(`button.js-btn-delete[data-id]`);
     let idFigure = document.querySelector('figure[data-id]')
     let figureToDelete  = idFigure = idWork
-    figureToDelete.remove
-
-    console.log(figureToDelete)   
+    figureToDelete.remove  
 }
 
 
@@ -289,25 +297,20 @@ function addWork() {
         console.log(inputPhoto);
         const selectCategory = document.getElementById("category");
         console.log(selectCategory);
-        
 
+        // Récupération de la valeur des champs de formulaire avec  objet formData
         let formData = new FormData();
         formData.append("image", inputPhoto.files[0]);
-        console.log(inputPhoto.files[0]);
         formData.append("title", inputTitle.value);
-        console.log(inputTitle.value);
         formData.append("category", selectCategory.options[selectCategory.selectedIndex].value);
-        console.log(selectCategory.options[selectCategory.selectedIndex].value);
         console.log(formData)
 
         if (inputTitle.value === '' || inputPhoto.value === '' || selectCategory.value === '') {
             msgRespAdd.innerText = "Veuillez renseigner tous les champs de saisie!";
+            return;
         }
         console.log(msgRespAdd)
 
-
-        // Récupération de la valeur des champs de formulaire avec  objet formData
-     
         // Méthode POST
         let postAdd = {
             method: "POST",
@@ -323,19 +326,17 @@ function addWork() {
         // Réponse de l'API
         .then(function(response){
             if(!response.ok){ 
-                //msgRespAdd.innerTexte = "Erreur ajout de projet impossible"
+                msgRespAdd.innerText = "Erreur ajout de projet impossible"
             } else { 
-                //msgRespAdd.innerTexte = "projet ajouter avec succés"
+                msgRespAdd.innerText = "projet ajouter avec succés"
                 response.json().then(function(data){
 
-                    let msgResponse = document.querySelector(".msg-resp");
-                    msgRespAdd.innerTexte = "Nouveau projet ajouté avec succés"
-                   
+                    msgRespAdd.innerText = "Nouveau projet ajouté avec succés"
+        
                     document.querySelector('.gallery').innerHTML = '';
                     document.querySelector('.modal-gallery').innerHTML = '';
-                    return apiCall() 
+                    return apiCall();
                     
-
                 })
             
             }   
