@@ -1,16 +1,10 @@
 
-
 // On récupère les deux champs et on affiche leur valeur
 
 let form = document.querySelector("form");
-console.log(form);
 let baliseEmail = document.querySelector("#email");
-console.log(email);
 let balisePassword = document.querySelector("#password");
-console.log(password);
 let messageError = document.querySelector("p");
-
-
 
 //Définition des règles de validation
 
@@ -45,7 +39,6 @@ function verifierPassword(balise) {
 }
 
 
-
 //Contrôle si les règles de validation sont verifiées lors de l'évenement
 
 form.addEventListener("submit", (event) => { // On verifie les input a l'envoi du formilaire
@@ -54,15 +47,12 @@ form.addEventListener("submit", (event) => { // On verifie les input a l'envoi d
     verifierChamp(balisePassword)
 })
 
-
 baliseEmail.addEventListener("change", () => { //On verifie l'email au changement de champ
     verifierEmail(baliseEmail)
-
 })
 
 balisePassword.addEventListener("change", () => { //On verifie le password au changement de champ
     verifierPassword(balisePassword)
-
 })
 
 

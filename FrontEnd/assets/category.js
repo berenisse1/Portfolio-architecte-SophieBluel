@@ -1,5 +1,5 @@
-// Afficher les boutons filtres
-//baliseModalAddWork
+
+
 
 let urlCategories = `http://localhost:5678/api/categories`; // on recupere l'api work
 let filters = document.querySelector('.filters');
@@ -34,14 +34,13 @@ let apiCallCategories = async () => {
             newFilter.setAttribute('data-id', category.id);
 
             filters.appendChild(newFilter);
-            console.log(newFilter);
             
         });
 
     }
     filterWork(apiData);
 
-
+    //créer contenu du formulaire d'ajout de la modal relatif aux champs de saisies
     newLabel = document.createElement('label'); 
     newLabel.innerText = 'Catégorie';
     newSelect = document.createElement('select');
@@ -55,7 +54,7 @@ let apiCallCategories = async () => {
     option.innerText = '';
     newSelect.appendChild(option);
 
-
+    // Afficher les options de categorie dans le formulaire de la modal
     function CategoryAddWork(apiData){
 
         
@@ -68,16 +67,10 @@ let apiCallCategories = async () => {
             selectCategory.appendChild(newLabel);
             selectCategory.appendChild(newSelect);
             newSelect.appendChild(newOption);
-            //newSelect.appendChild(newOption);
-        
-            console.log(newLabel);
-            console.log(newSelect);
-            console.log(newOption);
           
         });  
 
-       
-       
+
     }
     CategoryAddWork(apiData);
  
