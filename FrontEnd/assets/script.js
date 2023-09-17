@@ -220,6 +220,8 @@ const previewPhoto  = function (event) {
 
     if (photo) {
         // On génère l'URL de l'image
+        image.style.width = "100%"
+        image.style.height ="100%"
         image.src = URL.createObjectURL(photo)
         document.querySelector('.js-ampty-preview-container').style.display = "none"
         resetModal()
@@ -233,6 +235,8 @@ function resetModal(){
         msgRespAdd.innerHTML = ''
         msgRespDelete = ''
         image.src = ''
+        image.style.width = null
+        image.style.height = null
        
     })
 
