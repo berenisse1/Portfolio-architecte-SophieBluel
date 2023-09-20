@@ -1,7 +1,5 @@
 
-
-
-let urlCategories = `http://localhost:5678/api/categories`; // on recupere l'api work
+let urlCategories = `http://localhost:5678/api/categories`; // on recupere l'api categories
 let filters = document.querySelector('.filters');
 const selectCategory = document.querySelector('.selectCategory');
 
@@ -22,7 +20,7 @@ let apiCallCategories = async () => {
     console.log(filterAll);
 
 
-    //Boucle qui permet d'afficher tous les boutons de filtres selon ID
+    //Boucle qui permet d'afficher tous les boutons de filtres selon id
 
     function filterWork(apiData){
         apiData.forEach(category => {
