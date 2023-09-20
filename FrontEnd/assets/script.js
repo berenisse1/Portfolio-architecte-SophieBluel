@@ -1,4 +1,4 @@
-const urlWorks = `http://localhost:5678/api/works`; // on recupere l'api work
+const urlWorks = `http://localhost:5678/api/works`; // on recupere l'api works
 const section = document.querySelector('.gallery');// on va chercher la class gallery pour aficher les travaux
 const modalGallery = document.querySelector('.modal-gallery');
 
@@ -87,11 +87,11 @@ const apiCall = async() => {
     
     btnFiltre.forEach(button => { // boucle crée 1 par boutton
 
-        button.addEventListener('click', () => {  // crée un évenement au clic
+        button.addEventListener('click', () => {  
             const dataId = button.dataset.id //Crée une constante pour chercher le data-id du bouton
             let filtre = apiData.filter(function(element){ //Crée variable pour filtrer les données API 
-            return element.categoryId == dataId; // Retourne id de la catégorie en fonction de id du button
-        });
+            return element.categoryId == dataId; // Retourne element dont la categorie coresspond à celle du buton sélectionné 
+            });
         document.querySelector('.gallery').innerHTML = '';
         showWork(filtre);
         })     
@@ -145,13 +145,13 @@ const modalAddWorkContent = document.querySelector(".modal-add-work-content");
 const btnReturnModalWork = document.querySelector(".btn-return-modalWork");
 
 const openModal = function (event){
-    event.preventDefault() // empêche rechargement de la page au clic pour rediriger vers url
+    event.preventDefault() // empêche rechargement de la page au clic 
     modal.style.display = 'flex';
     modalWorkContent.style.display = 'flex'; 
     btnReturnModalWork.style.display = "none";
     modalAddWorkContent.style.display = 'none'; 
     modal.removeAttribute('aria-hidden') // retire attribut pour garantir accesibilité de la fenêtre modal aux technologie d'assistance
-    modal.setAttribute('aria-modal', 'true') // ajoute attribut pour que les technologies d'asistance puisse identifier le type de contenue
+    modal.setAttribute('aria-modal', 'true') // ajoute attribut pour que les technologies d'asistance puissent identifier le type de contenue
     modal.addEventListener("click", closeModal) // apl fonction de fermeture de la modal au clic
     modal.querySelector('.js-modal-close').addEventListener('click',closeModal) 
     modal.querySelector('.js-modal-stop').addEventListener('click',stopPropagation) 
@@ -178,8 +178,8 @@ const stopPropagation = function(e) {
 
 // Traitement de la fenêtre modale
 
-document.querySelectorAll('.js-modal').forEach(a => { // ajout EventListener sur chaque lien qui ont la class js-modal
-    a.addEventListener('click', openModal)   // apl fonction d'ouverture de la fenetre modal au clic sur ces liens
+document.querySelectorAll('.js-modal').forEach(a => { 
+    a.addEventListener('click', openModal)   
     
 })
 
@@ -219,15 +219,15 @@ const previewPhoto  = function (event) {
     const [photo] = event.files // evenement qui contient un objet fileList
 
     if (photo) {
-        // On génère l'URL de l'image
+        document.querySelector('.js-ampty-preview-container').style.display = "none"
+        image.src = URL.createObjectURL(photo) // On génère l'URL de l'image
         image.style.width = "100%"
         image.style.height ="100%"
-        image.src = URL.createObjectURL(photo)
-        document.querySelector('.js-ampty-preview-container').style.display = "none"
         resetModal()
     }
 }
 
+//fonction de réinitialisation de la modale
 function resetModal(){
     image.addEventListener('click', () =>{
         document.querySelector('.js-ampty-preview-container').style.display = "flex"
@@ -242,7 +242,7 @@ function resetModal(){
 
 }   
 
-// Supression des travaux avec méthode DELETE
+// Supression des travaux avec la méthode DELETE
 
 let msgRespDelete = document.querySelector(".msg-resp-delete")
 
@@ -284,7 +284,7 @@ function removeWork(){
 }
 
 
-// Soumettre les données du projet a ajouté méthode POST
+// Soumettre les données du projet à ajouter avec la méthode POST
 
 const form = document.getElementById("form-add-file");
 let msgRespAdd = document.querySelector(".msg-resp-add")
@@ -296,30 +296,24 @@ function addWork() {
         event.preventDefault();
 
         const inputTitle = document.getElementById("title");
-        console.log(inputTitle);
         const inputPhoto = document.getElementById("photo");
-        console.log(inputPhoto);
         const selectCategory = document.getElementById("category");
-        console.log(selectCategory);
 
         // Récupération de la valeur des champs de formulaire avec  objet formData
         let formData = new FormData();
         formData.append("image", inputPhoto.files[0]);
         formData.append("title", inputTitle.value);
         formData.append("category", selectCategory.options[selectCategory.selectedIndex].value);
-        console.log(formData)
 
         if (inputTitle.value === '' || inputPhoto.value === '' || selectCategory.value === '') {
             msgRespAdd.innerText = "Veuillez renseigner tous les champs de saisie!";
             return;
         }
-        console.log(msgRespAdd)
 
         // Méthode POST
         let postAdd = {
             method: "POST",
             headers: {
-                //'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${token}`
             }, 
             body: formData
@@ -332,10 +326,9 @@ function addWork() {
             if(!response.ok){ 
                 msgRespAdd.innerText = "Erreur ajout de projet impossible"
             } else { 
-                msgRespAdd.innerText = "projet ajouter avec succés"
+                msgRespAdd.innerText = "Projet ajouter avec succés"
                 response.json().then(function(data){
-
-                    msgRespAdd.innerText = "Nouveau projet ajouté avec succés"
+                    
         
                     document.querySelector('.gallery').innerHTML = '';
                     document.querySelector('.modal-gallery').innerHTML = '';

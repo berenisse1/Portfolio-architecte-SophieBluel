@@ -1,5 +1,5 @@
 
-// On récupère les deux champs et on affiche leur valeur
+// On récupère les éléments pour definir les variables
 
 let form = document.querySelector("form");
 let baliseEmail = document.querySelector("#email");
@@ -41,8 +41,7 @@ function verifierPassword(balise) {
 
 //Contrôle si les règles de validation sont verifiées lors de l'évenement
 
-form.addEventListener("submit", (event) => { // On verifie les input a l'envoi du formilaire
-    event.preventDefault() // On empêche le comportement par défaut
+form.addEventListener("change", () => { // On verifie les inputs au changement de champ
     verifierChamp(baliseEmail)
     verifierChamp(balisePassword)
 })
@@ -92,8 +91,8 @@ form.addEventListener("submit", (e) => {
         }
     })
     // Interception des erreurs 
-    .catch(error => // interomp code en cas d'erreur et signale erreur dans la console
-        console.log("error" + error) // sgnial chaine de caractère "erreur" + localisation de l'erreur
+    .catch(error => 
+        console.log("error" + error) 
     );
     
 });
